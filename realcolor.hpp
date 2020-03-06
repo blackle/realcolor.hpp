@@ -44,24 +44,19 @@ namespace realcolor
 		return color.str();
 	}
 
-	inline std::string fg(double r, double g, double b)
+	//don't be scared of this template magic, this is just so we can pass all floating point types in (floats, doubles, etc)
+	template<typename floatType>
+	inline typename std::enable_if<std::is_floating_point<floatType>::value, std::string>::type
+	fg(floatType r, floatType g, floatType b)
 	{
-		return fg((int)(r*0xFF), (int)(g*0xFF), (int)(b*0xFF));
+		return fg(static_cast<int>(r*0xFF), static_cast<int>(g*0xFF), static_cast<int>(b*0xFF));
 	}
 
-	inline std::string bg(double r, double g, double b)
+	template<typename floatType>
+	inline typename std::enable_if<std::is_floating_point<floatType>::value, std::string>::type
+	bg(floatType r, floatType g, floatType b)
 	{
-		return bg((int)(r*0xFF), (int)(g*0xFF), (int)(b*0xFF));
-	}
-
-	inline std::string fg(float r, float g, float b)
-	{
-		return fg((int)(r*0xFF), (int)(g*0xFF), (int)(b*0xFF));
-	}
-
-	inline std::string bg(float r, float g, float b)
-	{
-		return bg((int)(r*0xFF), (int)(g*0xFF), (int)(b*0xFF));
+		return bg(static_cast<int>(r*0xFF), static_cast<int>(g*0xFF), static_cast<int>(b*0xFF));
 	}
 
 	inline std::string fg(int rgb)
