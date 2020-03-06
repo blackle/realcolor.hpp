@@ -2,7 +2,7 @@
 
 A header-only c++ library for colouring output streams on linux with 24-bit truecolor.
 
-```
+```cpp
 std::cout
 	<< realcolor::bg(0xBC4598)
 	<< realcolor::fg(0xE7E6B4)
